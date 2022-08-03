@@ -12,14 +12,11 @@ namespace certificacao_csharp_roteiro
         public void Executar()
         {
             string textoDigitado = "123";
-            //int numeroConvertido = textoDigitado;
-
-            int numeroConvertido = int.Parse(textoDigitado);
+            int numeroConvertido = int.Parse(textoDigitado); // O método Parse força a conversão
             Console.WriteLine(numeroConvertido);
 
             textoDigitado = "abc";
-            //numeroConvertido = int.Parse(textoDigitado);
-            int.TryParse(textoDigitado, out numeroConvertido);
+            int.TryParse(textoDigitado, out numeroConvertido); // Não lança exeção se não conseguir converter
 
             if (int.TryParse(textoDigitado, out numeroConvertido))
             {
@@ -31,7 +28,6 @@ namespace certificacao_csharp_roteiro
             }
 
             textoDigitado = "R$ 123,45";
-            
             decimal.TryParse(textoDigitado, 
                 System.Globalization.NumberStyles.Currency, //moeda
                 System.Globalization.CultureInfo.CurrentCulture, //pt-BR

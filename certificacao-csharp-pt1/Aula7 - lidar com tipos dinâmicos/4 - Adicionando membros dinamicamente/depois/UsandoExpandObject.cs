@@ -15,12 +15,14 @@ namespace certificacao_csharp_roteiro
             string json = "{\"De\": \"Paulo Silveira\"," +
                 "\"Para\": \"Guilherme Silveira\"}";
 
+            // Podemos adicionar métodos e propriedades dinamicamente em um objeto ExpandoObject
             dynamic mensagem = JsonConvert.DeserializeObject<ExpandoObject>(json);
 
-            mensagem.Texto = "Olá, " + mensagem.Para;
+            mensagem.Texto = "Olá, " + mensagem.Para; // Criando uma propriedade dinamicamente
 
             EnviarMensagem(mensagem);
 
+            // Adicionando um método ao objeto dinamico
             mensagem.Inverter = new Action(() =>
             {
                 var aux = mensagem.De;

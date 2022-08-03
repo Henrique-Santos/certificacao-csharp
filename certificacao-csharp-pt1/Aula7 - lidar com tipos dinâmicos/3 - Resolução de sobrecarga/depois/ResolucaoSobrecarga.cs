@@ -25,6 +25,7 @@ namespace certificacao_csharp_roteiro
             Console.WriteLine(Somar("abc", "xyz"));
         }
 
+        // Sobrecarga de métodos é quando métodos com o mesmo nome possuem assinaturas diferentes
         //int Somar(int parcela1, int parcela2)
         //{
         //    return parcela1 + parcela2;
@@ -40,6 +41,7 @@ namespace certificacao_csharp_roteiro
         //    return (double)parcela1 + (double)parcela2;
         //}
 
+        // Em tempo de execução o tipo dynamic é tratado como um tipo object
         dynamic Somar(dynamic parcela1, dynamic parcela2)
         {
             return parcela1 + parcela2;

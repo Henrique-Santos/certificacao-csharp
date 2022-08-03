@@ -20,6 +20,7 @@ namespace certificacao_csharp_roteiro
             Console.WriteLine(d3);
             Console.WriteLine(d4);
 
+            // Se o tipo do dynamic for compativel com o tipo da variavel primitiva a conversão implicita é ser feita facilmente
             int i = d1;
             string str = d2;
             DateTime dt = d3;
