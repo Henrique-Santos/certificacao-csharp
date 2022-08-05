@@ -49,7 +49,7 @@ namespace Topico5
                 aluno5
             };
 
-            alunos.Sort();
+            alunos.Sort(); // É necessário a implementaçao da interface IComparable
 
             foreach (var aluno in alunos)
             {
@@ -79,6 +79,7 @@ namespace Topico5
                 && this.DataNascimento.Equals(outro.DataNascimento);
         }
 
+        // A implementaçao desse método facilita a busca otimizada ao usar uma coleçao hash para armazenas objetos do tipo Aluno
         public override int GetHashCode()
         {
             var hashCode = -1523756618;
@@ -104,6 +105,9 @@ namespace Topico5
                 throw new ArgumentException("Objeto não é um Aluno");
             }
 
+            /*
+             Primeiro compara com a data de nascimento, se a data for igual compara com o nome
+             */
             int resultado = this.DataNascimento.CompareTo(outro.DataNascimento);
             if (resultado == 0)
             {

@@ -17,6 +17,7 @@ namespace Topico3
             funcionario.Nome = "josé da silva";
             funcionario.DataNascimento = new DateTime(2000, 1, 1);
 
+            // Fazendo casting
             ((IFuncionario)funcionario).CargaHorariaMensal = 168;
             ((IPlantonista)funcionario).CargaHorariaMensal = 32;
             funcionario.EfeturarPagamento();
@@ -58,7 +59,11 @@ namespace Topico3
         public DateTime DataNascimento { get; set; }
 
         public event EventHandler CrachaGerado;
-
+        /*
+         * Uma interface explicitamente implementada permite acomodar métodos de nomes iguais, 
+         * mas destinados a interfaces diferentes.
+         */
+        //Implementando explicitamente os métodos da interface
         void IFuncionario.GerarCracha()
         {
             if (CrachaGerado != null)
@@ -77,6 +82,7 @@ namespace Topico3
 
         public decimal Salario { get; }
 
+        // Interfaces implementadas explicitamente nao podem ter configuracoes de visibilidade, por padrao é publico
         int IFuncionario.CargaHorariaMensal { get; set; }
 
         int IPlantonista.CargaHorariaMensal { get; set; }

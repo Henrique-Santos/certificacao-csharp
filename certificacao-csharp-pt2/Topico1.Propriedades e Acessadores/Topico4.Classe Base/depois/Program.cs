@@ -105,6 +105,7 @@ namespace Topico4
         }
     }
 
+    // sealed impede a herança - No C# é possível herdar somente uma classe, nao existe herança multipla
     sealed class Cliente : Pessoa
     {
         public DateTime? DataUltimaCompra { get; set; }
@@ -116,16 +117,7 @@ namespace Topico4
         }
     }
 
-    //class ClienteFilha : Cliente
-    //{
-
-    //}
-
-    //class ClienteNeta : ClienteFilha
-    //{
-
-    //}
-
+    // Classe base nao permite ser instanciada
     abstract class Pessoa
     {
         public string CPF { get; set; }
