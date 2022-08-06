@@ -11,8 +11,9 @@ namespace _02._1.string_builder
     {
         static void Main(string[] args)
         {
-            StringBuilder materias = new StringBuilder();
-            materias.Append("Português");
+            // Ao concatenar string de uma maneira manual o .net vai criando novos objeto em cada uma das concatenações
+            StringBuilder materias = new StringBuilder(); // A classe StringBuilder tem uma maior eficiencia
+            materias.Append("Português"); // Método de concatenação
             Console.WriteLine(materias);
             materias.Append(", Matemática");
             Console.WriteLine(materias);

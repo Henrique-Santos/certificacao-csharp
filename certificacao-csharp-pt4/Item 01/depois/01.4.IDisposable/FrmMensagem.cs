@@ -17,6 +17,7 @@ namespace _01._4.IDisposable_Finalizador
             //mensageiro.EnviarMensagem(txtMensagem.Text);
             //mensageiro.Dispose();
 
+            // A instrução using dispensa o uso do Dispose, ele só pode ser utilizado em classes que implementam IDisposable
             using (MensageiroNotepad mensageiro = new MensageiroNotepad())
             {
                 mensageiro.EnviarMensagem(txtMensagem.Text);

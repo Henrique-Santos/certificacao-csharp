@@ -19,7 +19,7 @@ namespace _01._1.TiposDeValor
 
         static void Metodo2(int dados)
         {
-            int multiplicador = 2;
+            int multiplicador = 2; // Variaveis do tipo de valor ou primitivas ficam armazenadas na pilha
             Console.WriteLine("O valor é: "
                 + dados.ToString());
             Metodo3(dados * multiplicador);

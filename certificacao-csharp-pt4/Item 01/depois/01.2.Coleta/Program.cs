@@ -34,7 +34,7 @@ namespace _01._02.TiposDeReferencia
         {
             for (long i = 0; i < 100000; i++)
             {
-                ClasseLivro livro = new ClasseLivro
+                ClasseLivro livro = new ClasseLivro // Uma classe instanciada fica armazenada no heap
                 {
                     Introducao = new string(' ', 100000),
                     Texto = new string(' ', 100000),

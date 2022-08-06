@@ -12,7 +12,7 @@ namespace _01._3.Finalizador
                 Livro livro = new Livro();
             }
 
-            GC.Collect();
+            GC.Collect(); // Força o coletor de lixo a rodar, por padrão o GC só roda quando tem muitas instancias de objetos no heap
 
             Console.ReadKey();
         }
@@ -33,6 +33,7 @@ namespace _01._3.Finalizador
             //Trace.WriteLine("Livro " + Id + " está sendo criado");
         }
 
+        // Referencia um finalizador com o simbolo -> ~
         //~Livro()
         //{
         //    //LIBERAR SOMENTE OS RECURSOS NÃO-GERENCIADOS
