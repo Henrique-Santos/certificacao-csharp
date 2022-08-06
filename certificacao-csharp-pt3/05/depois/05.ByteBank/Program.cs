@@ -152,7 +152,8 @@ namespace _05.ByteBank
             catch (Exception ex) //EXCEÇÕES MAIS GENÉRICAS DEPOIS
             {
                 Logger.LogErro(ex.ToString());
-                throw;
+                throw; // Relança a exception e mantem as informações da stack trace
+                //throw ex; // Perde o historico da stack trace
             }
             finally
             {
