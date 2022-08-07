@@ -114,9 +114,6 @@ namespace _02._4.pesquisa
             int.TryParse(parametros[0], out int indiceInicial);
             int.TryParse(parametros[1], out int comprimento);
 
-            //lblDocumento.SelectionStart = ???
-            //lblDocumento.SelectionLength = ???
-
             string trecho = lblDocumento.Text.Substring(indiceInicial, comprimento);
             
             return "O trecho selecionado é: " + trecho;
