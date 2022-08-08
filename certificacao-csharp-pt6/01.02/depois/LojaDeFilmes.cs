@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace _01._02
 {
-    [JsonObject("MovieStore")]
+    [JsonObject("MovieStore")] // Definido o nome do atributo ao gerar um documento JSON
     public class LojaDeFilmes
     {
         [JsonProperty("Directors")]

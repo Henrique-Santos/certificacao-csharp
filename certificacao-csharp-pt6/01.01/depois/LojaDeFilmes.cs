@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace _01._01
 {
-    [XmlRoot("MovieStore")]
+    [XmlRoot("MovieStore")] // Definido o nome do atributo ao gerar um documento XML
     public class LojaDeFilmes //MovieStore
     {
         [XmlArray("Directors")]

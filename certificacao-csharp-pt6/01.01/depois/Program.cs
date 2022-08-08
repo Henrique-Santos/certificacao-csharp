@@ -14,9 +14,9 @@ namespace _01._03
         static void Main(string[] args)
         {
 
-            //INÍCIO DO CÓDIGO DO PRIMEIRO SISTEMA
+            //INÍCIO DO CÓDIGO DO PRIMEIRO SISTEMA -> Serializando um objeto em um formato Texto e XML
             var dados = ObterDados();
-            var xmlSerializer = new XmlSerializer(typeof(LojaDeFilmes));
+            var xmlSerializer = new XmlSerializer(typeof(LojaDeFilmes)); // Cria um modelo de XML com base nas propriedades da classe LojaDeFilmes
 
             using (var stringWriter = new StringWriter())
             {
@@ -30,7 +30,7 @@ namespace _01._03
             }
 
 
-            //AQUI VEM O CÓDIGO DO SEGUNDO SISTEMA
+            //AQUI VEM O CÓDIGO DO SEGUNDO SISTEMA -> Deserializando um arquivo XML para um objeto
             var xmlSerializer2 = new XmlSerializer(typeof(MovieStore));
             MovieStore movieStore;
             using (var fileStream = new FileStream("MovieStore.xml", FileMode.Open, FileAccess.Read))
