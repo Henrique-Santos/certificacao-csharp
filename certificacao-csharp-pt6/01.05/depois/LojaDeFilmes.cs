@@ -21,6 +21,7 @@ namespace _01._05
         public string Nome { get; set; }
         public int NumeroFilmes;
 
+        // Criando uma serialização personalizada
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(Nome), Nome);

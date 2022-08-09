@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace _01._03
 {
-    [Serializable]
+    [Serializable] // Necessario para poder serializar para um arquivo binario
     public class LojaDeFilmes
     {
         public List<Diretor> Diretores = new List<Diretor>();
@@ -18,7 +18,7 @@ namespace _01._03
     public class Diretor
     {
         public string Nome { get; set; }
-        [NonSerialized]
+        [NonSerialized] // Não será serializado
         public int NumeroFilmes;
     }
 

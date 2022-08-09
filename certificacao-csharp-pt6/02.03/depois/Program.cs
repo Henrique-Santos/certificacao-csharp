@@ -121,7 +121,7 @@ namespace _02._04
             return outra.Titulo.Equals(this.Titulo)
                 && outra.Ano.Equals(this.Ano);
         }
-
+        // Complemente a sobreescrita do método Equals
         public override int GetHashCode()
         {
             var hashCode = -131496797;
