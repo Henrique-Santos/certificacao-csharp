@@ -13,7 +13,7 @@ namespace _01_01
             Console.WriteLine("A campainha será tocada.");
             campainha.Tocar();
 
-            campainha.OnCampainhaTocou -= CampainhaTocou1;
+            campainha.OnCampainhaTocou -= CampainhaTocou1; // Removendo um dos métodos que foi associado a Action
             Console.WriteLine("A campainha será tocada.");
             campainha.Tocar();
 
@@ -33,15 +33,17 @@ namespace _01_01
 
     class Campainha
     {
+
+        /*
+         Para assinarmos um evento, é necessário usar um delegate com uma assinatura que combine com o método que o emissor do evento espera invocar. 
+         Com isto, vemos a importância dos delegates para a representação da assinatura de métodos!
+         */
         public Action OnCampainhaTocou { get; set; }
 
         public void Tocar()
         {
-            if (OnCampainhaTocou != null)
-            {
-                OnCampainhaTocou();
-            }
-            
+            // Esse evento está sendo disparado para todos os manipuladores de uma vez só (No nosso caso existem 2 métodos manipulando esse evento)
+            OnCampainhaTocou?.Invoke();
         }
     }
 }

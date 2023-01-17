@@ -37,10 +37,11 @@ namespace _01_02
 
         }
 
+        // O primeiro parametro se refere ao emissor de evento, e segundo, aos argumentos do evento
         static void CampainhaTocou1(object sender, CampainhaEventArgs args)
         {
             Console.WriteLine("A campainha tocou no apartamento " + args.Apartamento + " .(1)");
-            throw new Exception("Ocorreu um erro em CampainhaTocou1");
+            throw new Exception("Ocorreu um erro em CampainhaTocou1"); //Simulando uma situação de erro
         }
         static void CampainhaTocou2(object sender, CampainhaEventArgs args)
         {
@@ -51,11 +52,18 @@ namespace _01_02
 
     class Campainha
     {
+        /*
+         Diferente de um event, uma Action fica exposta publicamente na classe Campainha, 
+         e dessa forma pode ser executada diretamente por um código externo.
+         */
+
+        // Definindo um manipulador de eventos, e qual a classe de argumento de evento que ele utilizará
         public event EventHandler<CampainhaEventArgs> OnCampainhaTocou;
 
         public void Tocar(string apartamento)
         {
             List<Exception> erros = new List<Exception>();
+            // Disparando o evento individualmente para os manipuladores
             foreach (var manipulador in OnCampainhaTocou.GetInvocationList())
             {
                 try
@@ -64,7 +72,7 @@ namespace _01_02
                 }
                 catch (Exception e)
                 {
-                    erros.Add(e.InnerException);
+                    erros.Add(e.InnerException); // Criando uma lista de erros
                 }
             }
 
@@ -73,6 +81,7 @@ namespace _01_02
         }
     }
 
+    // EventArgs é uma classe de argumento vazio, pois não armazena nenhuma informação sobre evento. Por isso a necessidade de criar uma classe derivada
     class CampainhaEventArgs : EventArgs
     {
         public CampainhaEventArgs(string apartamento)
