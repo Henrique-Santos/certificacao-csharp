@@ -26,6 +26,7 @@ namespace _02._06
         }
     }
 
+    //Coleção customizada
     class PlacasDeCarro : ICollection<string>
     {
         private List<string> lista = new List<string>();
