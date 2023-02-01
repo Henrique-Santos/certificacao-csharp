@@ -12,13 +12,14 @@ namespace _02_04
             List<Diretor> diretores = GetDiretores();
             List<Filme> filmes = GetFilmes();
 
+            // O LINQ monta uma definição de consulta
             var consulta = from f in filmes
                            where f.Diretor.Nome == "James Cameron"
                            select f;
 
-            var consultaArray = consulta.ToArray();
+            var consultaArray = consulta.ToArray(); // Forçando a execução da consulta ao fazer uma conversão (Métodos agregados tbm forçam a execução de uma consulta)
 
-            foreach (var item in consultaArray)
+            foreach (var item in consulta) // No momento em que eu preciso dos dados a consulta é feita (Execução Adiada)
             {
                 Console.WriteLine(item.Titulo);
             }

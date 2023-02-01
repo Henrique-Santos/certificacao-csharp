@@ -28,6 +28,7 @@ namespace _02_01
 
         private static void Imprimir(List<Filme> filmes)
         {
+            //Delimita o tamanho da coluna de cada campo, o  valor negativo é pra ter o alinhamento a esquerda
             Console.WriteLine($"{"Título",-40} {"Diretor",-20} {"Ano",4}");
             Console.WriteLine(new string('=', 64));
             foreach (var filme in filmes)

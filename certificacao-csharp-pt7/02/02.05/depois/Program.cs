@@ -24,10 +24,7 @@ namespace _02_05
                 "</Filme>" +
             "</Filmes>";
 
-            //XmlDocument documento = new XmlDocument();
-            //documento.LoadXml(xml);
-
-            XDocument documento = XDocument.Parse(xml);
+            XDocument documento = XDocument.Parse(xml); // Classe adequada para acessar XML por meio do LINQ
 
             IEnumerable<XElement> consulta =
                 from f in documento.Descendants("Filme")
@@ -35,7 +32,7 @@ namespace _02_05
 
             foreach (var item in consulta)
             {
-                Console.WriteLine(item.Element("Diretor").FirstNode);
+                Console.WriteLine(item.Element("Diretor").FirstNode); // Acessando o primeiro Nó do Elemento, ele possui o valor da chave no XML
                 Console.WriteLine(item.Element("Titulo").FirstNode);
             }
 
@@ -43,7 +40,7 @@ namespace _02_05
 
             IEnumerable<XElement> consulta2 =
             from f in documento.Descendants("Filme")
-            where (string)f.Element("Diretor") == "James Cameron"
+            where (string)f.Element("Diretor") == "James Cameron" // A conversão explicita ao Elemento, faz com que o acesso ao primeiro Nó não seja necessário para comparação
             select f;
 
             foreach (var item in consulta2)
@@ -62,6 +59,23 @@ namespace _02_05
             {
                 Console.WriteLine((string)item.Element("Diretor"));
                 Console.WriteLine((string)item.Element("Titulo"));
+            }
+
+            Console.WriteLine();
+
+            XElement pulpFiction = consulta.FirstOrDefault(x => (string)x.Element("Titulo") == "Pulp Fiction");
+
+            pulpFiction?.Add(new XElement("Genero", "Drama")); // Modificando o XML por adicionar uma tag chamada Genero com o valor Drama
+
+            XElement avatar = consulta.FirstOrDefault(x => (string)x.Element("Titulo") == "Avatar");
+
+            avatar.Add("Genero", "Ficção Cientifica");
+
+            foreach (var item in consulta)
+            {
+                Console.WriteLine((string)item.Element("Diretor"));
+                Console.WriteLine((string)item.Element("Titulo"));
+                Console.WriteLine((string)item.Element("Genero"));
             }
 
             Console.ReadKey();

@@ -87,7 +87,7 @@ namespace _02_03
             .Join(diretores,
             f => f.DiretorId,
             d => d.Id,
-            (f, d) => new { f, d })
+            (f, d) => new { f, d }) // Resultado do produto dessas associação
             .Where(x => x.f.Diretor.Nome == "Tim Burton")
             .Select(x => new //OBJETO ANÔNIMO
             {

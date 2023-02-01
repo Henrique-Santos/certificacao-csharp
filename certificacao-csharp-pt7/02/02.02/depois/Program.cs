@@ -101,12 +101,13 @@ namespace _02_02
             //  ON d.Id = f.DiretorId
             //GROUP BY d.Id
 
+            /* Mostra quantos filmes cada diretor possui */
             var consulta5 =
                 from f in filmes
                 join d in diretores
                     on f.DiretorId equals d.Id
-                group f by d
-                    into agrupado
+                group f by d // A chave do agrupamento é o próprio objeto Diretor
+                    into agrupado // Armazena os dados agrupados
                 select new //OBJETO ANÔNIMO
                 {
                     Diretor = agrupado.Key,
