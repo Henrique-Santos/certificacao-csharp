@@ -7,10 +7,8 @@ namespace Programa05
     {
         static void Main(string[] args)
         {
-            //TAREFA 1: obter as propriedades de CarrinhoCliente
-            //TAREFA 2: descobrir se podem ler ou escrever
-            //TAREFA 3: descobrir seus acessadores getters e setters
 
+            //TAREFA 1: obter as propriedades de CarrinhoCliente
             var tipo = typeof(CarrinhoCliente);
             var propriedades = tipo.GetProperties();
 
@@ -18,6 +16,7 @@ namespace Programa05
             {
                 Console.WriteLine("Propriedade: {0}", propriedade.Name);
 
+                //TAREFA 2: descobrir se podem ler ou escrever
                 if (propriedade.CanRead)
                 {
                     Console.WriteLine("\tPode ler");
@@ -26,6 +25,7 @@ namespace Programa05
 
                 if (propriedade.CanWrite)
                 {
+                    //TAREFA 3: descobrir seus acessadores getters e setters
                     Console.WriteLine("\tPode escrever");
                     Console.WriteLine("\t\tMétodo set: {0}", propriedade.SetMethod);
                 }
