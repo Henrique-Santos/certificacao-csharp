@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Program01._09
@@ -12,12 +7,14 @@ namespace Program01._09
     {
         static void Main(string[] args)
         {
-            Task tarefa = Task.Run(() => Ola());
-            tarefa.ContinueWith((tarefaAnterior) => Mundo(),
-                TaskContinuationOptions.NotOnFaulted);
+            var tarefa = Task.Run(() => Ola());
+            // Tarefa de continuacao. Como parametros ele recebe a Task anterior e o segundo parametro
+            // é um Enum que diz que só será executado se nao tiver falha na Task anterior.
+            // Por padrao uma excecao lancada em uma Task nao impede a execucao da próxima
+            tarefa.ContinueWith((tarefaAnterior) => Mundo(), TaskContinuationOptions.NotOnFaulted);
 
-            tarefa.ContinueWith((tarefaAnterior) => Erro(tarefaAnterior),
-                TaskContinuationOptions.OnlyOnFaulted);
+            // Exige que a tarefa anterior tenha ocorrido algum erro
+            tarefa.ContinueWith((tarefaAnterior) => Erro(tarefaAnterior), TaskContinuationOptions.OnlyOnFaulted);
             
 
             Console.ReadLine();

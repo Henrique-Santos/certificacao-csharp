@@ -30,9 +30,7 @@ namespace Program01
         static void Main(string[] args)
         {
 
-            IEnumerable<Filme> filmes = 
-                JsonConvert.DeserializeObject<IEnumerable<Filme>>
-                (File.ReadAllText("filmes.json"));
+            var filmes = JsonConvert.DeserializeObject<IEnumerable<Filme>>(File.ReadAllText("filmes.json"));
 
             var consulta =
                 from f in filmes
@@ -62,7 +60,7 @@ namespace Program01
             //Tarefa 2: obter a lista de filmes de Aventura, executando em PARALELO
 
             var consulta2 =
-            from f in filmes.AsParallel()
+            from f in filmes.AsParallel() // Nao faz necessariamente a consulta em paralelo, mas habilita para que possa ser feita
             where f.Genero == "Adventure"
             select f;
 
@@ -72,7 +70,7 @@ namespace Program01
 
             var consulta3 =
             from f in filmes.AsParallel()
-                .WithExecutionMode(ParallelExecutionMode.Default)
+                .WithExecutionMode(ParallelExecutionMode.Default) // A lib PLinq irá decidir se usará ou nao o paralelismo
             where f.Genero == "Adventure"
             select f;
 
@@ -82,7 +80,7 @@ namespace Program01
 
             var consulta4 =
             from f in filmes.AsParallel()
-                .WithExecutionMode(ParallelExecutionMode.ForceParallelism)
+                .WithExecutionMode(ParallelExecutionMode.ForceParallelism) // Forcando o paralelismo na consulta
             where f.Genero == "Adventure"
             select f;
 
@@ -93,7 +91,7 @@ namespace Program01
             var consulta5 =
             from f in filmes.AsParallel()
                 .WithExecutionMode(ParallelExecutionMode.ForceParallelism)
-                .WithDegreeOfParallelism(4)
+                .WithDegreeOfParallelism(4) // O numero maximo de tarefas concorrentes vai ser 4
             where f.Genero == "Adventure"
             select f;
 
@@ -103,7 +101,7 @@ namespace Program01
             var consulta6 =
                 from f in filmes
                     .AsParallel()
-                    .AsOrdered()
+                    .AsOrdered() // Preserva o ordem original da lista consultada
                 where f.Genero == "Adventure"
                 select f;
 
@@ -128,7 +126,7 @@ namespace Program01
                 where f.Genero == "Adventure"
                 select f;
 
-            consulta8.ForAll(filme =>
+            consulta8.ForAll(filme => // Usar o ForAll após uma consulta em paralelo é o melhor cenario de performance
             {
                 Console.WriteLine(filme.Titulo);
             });

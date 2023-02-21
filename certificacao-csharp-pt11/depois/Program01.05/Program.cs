@@ -11,14 +11,14 @@ namespace Program01._05
     {
         static void Main(string[] args)
         {
-            Task tarefa1 = new Task(() => ExecutaTrabalho(1));
-            tarefa1.Start();
-            tarefa1.Wait();
+            var tarefa1 = new Task(() => ExecutaTrabalho(1)); // Uma tarefa/task que recebe uma acao/action
+            tarefa1.Start(); // Para uma Task ser executada é preciso que ela seja iniciada
+            tarefa1.Wait(); // Uma Task trabalha de maneira assincrona, o Wait epera a Task ser completada pra continuar a execucao 
 
-            Task tarefa2 = Task.Run(() => ExecutaTrabalho(2));
+            var tarefa2 = Task.Run(() => ExecutaTrabalho(2));
             tarefa2.Wait();
 
-            Task<int> tarefa3 = Task.Run(() =>
+            var tarefa3 = Task.Run(() =>
             {
                 return CalcularResultado(2, 3);
             });

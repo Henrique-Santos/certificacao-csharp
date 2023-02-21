@@ -16,14 +16,18 @@ namespace Program01._08
 
             for (int i = 0; i < 10; i++)
             {
-                //guardar o valor de i numa variável local!
+                /*
+                 Quando se trabalha de forma assincrona as chamadas para o método Correr() estao competindo com a execucao do método Main.
+                 A primeira vez que o método Correr é chamado já teremos executado 10x o for 
+                 */
+                // Guardar o valor de i numa variável LOCAL, faz com que o valor seja preservado!
                 int numeroCorredor = i;
 
-                Task tarefa = Task.Run(() => Correr(numeroCorredor));
+                var tarefa = Task.Run(() => Correr(numeroCorredor));
                 tarefas[i] = tarefa;
             }
 
-            Task.WaitAll(tarefas);
+            Task.WaitAll(tarefas); // Aguardando a execucao de todas as tarefas assincronas
 
             Console.WriteLine("Número de threads:");
             Console.WriteLine(Process.GetCurrentProcess().Threads.Count);

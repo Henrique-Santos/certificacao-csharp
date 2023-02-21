@@ -10,24 +10,22 @@ namespace Program01
     {
         static void Main(string[] args)
         {
-            //TAREFA 1: Cozinhar e refogar EM SÉRIE
-            //TAREFA 2: Cozinhar e refogar EM PARALELO
-            //TAREFA 3: Medir o tempo dos 2 procedimentos
 
-            Stopwatch stopwatch = new Stopwatch();
+            //TAREFA 1: Cozinhar e refogar EM SÉRIE
+            var stopwatch = new Stopwatch();
             stopwatch.Start();
             CozinharMacarrao();
             RefogarMolho();
             stopwatch.Stop();
-            Console.WriteLine("Tempo decorrido: {0} segundos"
-                , stopwatch.ElapsedMilliseconds / 1000.0);
+            Console.WriteLine("Tempo decorrido: {0} segundos", stopwatch.ElapsedMilliseconds / 1000.0);
 
+            //TAREFA 2: Cozinhar e refogar EM PARALELO
             stopwatch.Restart();
-            Parallel.Invoke(() => CozinharMacarrao(),
-                () => RefogarMolho());
+            Parallel.Invoke(() => CozinharMacarrao(), () => RefogarMolho()); // Executa os métodos em paralelo
             stopwatch.Stop();
-            Console.WriteLine("Tempo decorrido: {0} segundos",
-                stopwatch.ElapsedMilliseconds / 1000.0);
+
+            //TAREFA 3: Medir o tempo dos 2 procedimentos
+            Console.WriteLine("Tempo decorrido: {0} segundos", stopwatch.ElapsedMilliseconds / 1000.0);
 
             Console.WriteLine(
                 "Retire do fogo e ponha o molho sobre o macarrão. " +
@@ -39,7 +37,7 @@ namespace Program01
         static void CozinharMacarrao()
         {
             Console.WriteLine("Cozinhando macarrão...");
-            System.Threading.Thread.Sleep(1000);
+            Thread.Sleep(1000);
             Console.WriteLine("Macarrão já está cozido!");
             Console.WriteLine();
         }

@@ -8,10 +8,10 @@ namespace Program01._10
     {
         static void Main(string[] args)
         {
-            //PROBLEMA: Criar e executar uma tarefa-mãe 
-            //e 10 tarefas-filhas que levam 1s cada uma para terminar.
+            //PROBLEMA: Criar e executar uma tarefa-mãe e 10 tarefas-filhas que levam 1s cada uma para terminar.
 
-            Task tarefaMae =
+            // O Factory cria uma nova Task.
+            var tarefaMae =
                 Task.Factory.StartNew(() => {
                     Console.WriteLine("Tarefa-mãe iniciou.");
 
@@ -19,11 +19,11 @@ namespace Program01._10
                     {
                         int tarefaId = i;
 
-                        Task tarefaFilha =
-                        Task.Factory.StartNew((id) => 
-                            ExecutarFilha(id),
-                            tarefaId,
-                            TaskCreationOptions.AttachedToParent);
+                        // O primeiro parametro é a Action a ser executada
+                        // O segunda parametro é o identificador da Task Filha
+                        // O terceiro parametro anexa a Task a Task Mae que a encapsula, definindo uma hierarquia
+                        var tarefaFilha = 
+                            Task.Factory.StartNew((id) => ExecutarFilha(id), tarefaId, TaskCreationOptions.AttachedToParent);
                     }
                 });
 
