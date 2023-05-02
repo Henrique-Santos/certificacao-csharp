@@ -22,11 +22,13 @@ namespace Program06
                 inicial++;
             }
 
+            // Bloqueia o acesso de muitas Threads simultaneas a variavel compartilhada somaGeral
             //lock (somaGeralObject)
             //{
             //    somaGeral = somaGeral + subtotal;
             //}
 
+            // Utilizando o bloqueio com a classe Monitor
             Monitor.Enter(somaGeralObject);
             try
             {
@@ -34,6 +36,7 @@ namespace Program06
             }
             finally
             {
+                // Configurando para que mesmo após uma excecao a saida do bloqueio aconteça
                 Monitor.Exit(somaGeralObject);
             }
 

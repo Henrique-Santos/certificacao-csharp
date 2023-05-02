@@ -13,6 +13,12 @@ namespace Program05_01
         {
             int NUMERO_ITENS = 30;
 
+            /*
+             Um dicionario comum não é Thread Safe, ele não é protegido contra o uso de mais de uma Thread ao mesmo tempo.
+             Com isso os seus valores podem ser corrompidos, conforme uma Thread lê o dicionario e o atualizado a outro Thread não fica sabendo
+             */
+
+            // ConcurrentDictionary é Thread Safe
             ConcurrentDictionary<int, int> dicionario =
                 new ConcurrentDictionary<int, int>();
 

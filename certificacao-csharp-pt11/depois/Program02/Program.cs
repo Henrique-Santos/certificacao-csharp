@@ -10,31 +10,32 @@ namespace Program02
             Thread.CurrentThread.Name = "A thread principal";
             ExibirThread(Thread.CurrentThread);
 
-            //1. Task X Thread
+            // Umas Task é uma Tarefa e ela representa uma unidade de trabalho a ser executada
+            // Umas Thread é uma linha de execucao, ela pode executar uma ou mais Tarefas
 
+            //1. Task X Thread
             Thread thread1 = new Thread(Executar);
             thread1.Name = "1. Task X Thread";
             thread1.Start();
-            thread1.Join();
+            thread1.Join(); // Bloqueia a Thread atual, isso faz com que a proxima Thread a ser executada aguarde a atual terminar
 
             //2. Thread com expressão lambda
-
             Thread thread2 = new Thread(() => Executar());
             thread2.Name = "2. Thread com expressão lambda";
             thread2.Start();
             thread2.Join();
-            //3. Passando parâmetro para thread
 
-            ParameterizedThreadStart ps =
-                new ParameterizedThreadStart((p) => 
-                ExecutarComParametro(p));
+            // ParameterizedThreadStart é um objeto que executa uma Thread parametrizada
+
+            //3. Passando parâmetro para thread
+            var ps = new ParameterizedThreadStart((p) => ExecutarComParametro(p));
 
             Thread thread3 = new Thread(ps);
             thread3.Name = "3. Passando parâmetro para thread";
-            thread3.Start(123);
+            thread3.Start(123); // O parametro é passado pelo método Start
             thread3.Join();
-            //4. Interrompendo um relógio
 
+            //4. Interrompendo um relógio
             bool relogioFuncionando = true;
             Thread thread4 = new Thread(() => 
             {
@@ -54,18 +55,12 @@ namespace Program02
             Console.ReadKey();
             relogioFuncionando = false;
             thread4.Join();
-
-            //5. Sincronizando uma thread
-
-            //6. Dados da Thread: Nome, cultura, prioridade, contexto, background, pool
-
-            //7. Usando Thread Pool
-
+             
+            //5. Usando Thread Pool
             for (int i = 0; i < 50; i++)
             {
                 int estadoDoItem = i;
-                ThreadPool.QueueUserWorkItem((estado) 
-                    => ExecutarComParametro(estadoDoItem));
+                ThreadPool.QueueUserWorkItem((estado) => ExecutarComParametro(estadoDoItem));
             }
 
             Console.ReadLine();
